@@ -1,18 +1,17 @@
 <?php
-namespace Detection\Normalization;
+namespace T3sec\Typo3Cms\Detection\Identification;
+
+use T3sec\Typo3Cms\Detection\Context;
+use T3sec\Typo3Cms\Detection\AbstractProcessor;
+use T3sec\Typo3Cms\Detection\ProcessorInterface;
+use T3sec\Url\UrlFetcher;
 
 
-$dir = dirname(__FILE__);
-$libraryDir = realpath($dir . '/../../../library');
-
-require_once $libraryDir . '/Detection/AbstractProcessor.php';
-require_once $libraryDir . '/Detection/ProcessorInterface.php';
-require_once $libraryDir . '/Detection/DomParser.php';
-
-
-class ShortenerRedirectOnlyProcessor extends \T3census\Detection\AbstractProcessor implements \T3census\Detection\ProcessorInterface
+class ShortenerRedirectOnlyProcessor extends AbstractProcessor implements ProcessorInterface
 {
-
+    /**
+     * @var array
+     */
     protected $shortenerServices = array(
         'b-gat.es',
         'base24.eu',
@@ -39,7 +38,6 @@ class ShortenerRedirectOnlyProcessor extends \T3census\Detection\AbstractProcess
         'ow.ly',
         'rlmk.me',
         'shar.es',
-        't3b.eu',
         't3n.me',
         'tinyurl.com',
         'ur1.ca',
@@ -50,7 +48,7 @@ class ShortenerRedirectOnlyProcessor extends \T3census\Detection\AbstractProcess
     /**
      * Class constructor.
      *
-     * @param  \T3census\Detection\ProcessorInterface|null $successor
+     * @param ProcessorInterface|null $successor
      */
     public function __construct($successor = NULL)
     {
@@ -62,10 +60,10 @@ class ShortenerRedirectOnlyProcessor extends \T3census\Detection\AbstractProcess
     /**
      * Processes context.
      *
-     * @param  \T3census\Detection\Context $context
-     * @return  void
+     * @param Context $context
+     * @return void
      */
-    public function process(\T3census\Detection\Context $context)
+    public function process(Context $context)
     {
 
         $objUrl = \Purl\Url::parse($context->getUrl());
@@ -73,8 +71,8 @@ class ShortenerRedirectOnlyProcessor extends \T3census\Detection\AbstractProcess
         $urlHost = $objUrl->get('host');
 
         if (in_array($urlHost, $this->shortenerServices, TRUE)) {
-            $objFetcher = new \T3census\Url\UrlFetcher();
-            $objFetcher->setUrl($context->getUrl())->fetchUrl(\T3census\Url\UrlFetcher::HTTP_GET, FALSE, TRUE);
+            $objFetcher = new UrlFetcher();
+            $objFetcher->setUrl($context->getUrl())->fetchUrl(UrlFetcher::HTTP_GET, FALSE, TRUE);
 
             if ($objFetcher->getErrno() === 0) {
                 $context->setUrl($objFetcher->getUrl());

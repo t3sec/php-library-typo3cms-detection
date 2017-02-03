@@ -12,7 +12,7 @@
   "homepage": "https://github.com/t3sec/php-library-typo3cms-detection",
   "license": "MIT",
   "autoload": {
-    "psr-4": {"T3sec\\Typo3Cms\\": "src"}
+    "psr-4": {"T3sec\\Typo3Cms\\Detection\\": "src"}
   },
   "require": {
     "jwage/purl": "0.0.7",

@@ -1,10 +1,10 @@
 <?php
-namespace Detection\Identification;
+namespace T3sec\Typo3Cms\Detection\Identification;
 
-use Detection\Context;
-use Detection\Request;
-use Detection\AbstractProcessor;
-use Detection\ProcessorInterface;
+use T3sec\Typo3Cms\Detection\Context;
+use T3sec\Typo3Cms\Detection\Request;
+use T3sec\Typo3Cms\Detection\AbstractProcessor;
+use T3sec\Typo3Cms\Detection\ProcessorInterface;
 use T3sec\Url\UrlFetcher;
 
 

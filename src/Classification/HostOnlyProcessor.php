@@ -1,14 +1,14 @@
 <?php
-namespace Detection\Classification;
+namespace T3sec\Typo3Cms\Detection\Classification;
 
-use Detection\Context;
-use Detection\DomParser;
-use Detection\AbstractProcessor;
-use Detection\ProcessorInterface;
+use T3sec\Typo3Cms\Detection\Context;
+use T3sec\Typo3Cms\Detection\DomParser;
+use T3sec\Typo3Cms\Detection\AbstractProcessor;
+use T3sec\Typo3Cms\Detection\ProcessorInterface;
 use T3sec\Url\UrlFetcher;
 
 
-class FullPathProcessor extends AbstractProcessor implements ProcessorInterface
+class HostOnlyProcessor extends AbstractProcessor implements ProcessorInterface
 {
     /**
      * Class constructor.
@@ -35,10 +35,9 @@ class FullPathProcessor extends AbstractProcessor implements ProcessorInterface
         $objFetcher = new UrlFetcher();
         $objUrl = \Purl\Url::parse($context->getUrl());
 
-        $urlFullPath = $objUrl->get('scheme') . '://' . $objUrl->get('host');
-        $path = $objUrl->get('path')->getPath();
-        $urlFullPath .= (is_string($path) && strlen($path) > 0 && 0 !== strcmp('/', $path) ? $path : '');
-        $objFetcher->setUrl($urlFullPath)->fetchUrl(UrlFetcher::HTTP_GET, FALSE, TRUE);
+        $urlHostOnly = $objUrl->get('scheme') . '://' . $objUrl->get('host');
+        $objFetcher->setUrl($urlHostOnly)->fetchUrl(UrlFetcher::HTTP_GET, FALSE, TRUE);
+
 
         if ($objFetcher->getErrno() === 0) {
             $responseBody = $objFetcher->getBody();

@@ -1,10 +1,10 @@
 <?php
-namespace Detection\Classification;
+namespace T3sec\Typo3Cms\Detection\Classification;
 
-use Detection\Context;
-use Detection\DomParser;
-use Detection\AbstractProcessor;
-use Detection\ProcessorInterface;
+use T3sec\Typo3Cms\Detection\Context;
+use T3sec\Typo3Cms\Detection\DomParser;
+use T3sec\Typo3Cms\Detection\AbstractProcessor;
+use T3sec\Typo3Cms\Detection\ProcessorInterface;
 
 
 class ExistingRequestsProcessor extends AbstractProcessor implements ProcessorInterface

@@ -1,5 +1,5 @@
 <?php
-namespace Detection;
+namespace T3sec\Typo3Cms\Detection;
 
 
 interface ProcessorInterface
