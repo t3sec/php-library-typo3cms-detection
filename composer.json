@@ -1,0 +1,21 @@
+{
+  "name": "t3sec/typo3cms-detection",
+  "description": "a PHP library to detect TYPO3 CMS sites",
+  "keywords": ["typo3-cms"],
+  "type": "library",
+  "authors": [
+    {
+      "name": "Marcus Krause",
+      "email": "marcus#exp2017@t3sec.info"
+    }
+  ],
+  "homepage": "https://github.com/t3sec/php-library-typo3cms-detection",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {"T3sec\\Typo3Cms\\": "src"}
+  },
+  "require": {
+    "jwage/purl": "0.0.7",
+    "t3sec/urlhelper": "dev-master"
+  }
+}
